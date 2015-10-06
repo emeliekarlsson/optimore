@@ -17,7 +17,9 @@ close all;
 
 %% Problem Definition
 
-model = CreateModel();      % Create TSP Model
+parameters = GetParameters();
+
+model = CreateModel(parameters);      % Create TS Model
 
 CostFunction=@(tour) TourLength(tour, model);    % Cost Function
 
