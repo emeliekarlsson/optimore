@@ -11,8 +11,20 @@
 % Contact Info: sm.kalami@gmail.com, info@yarpiz.com
 %
 
-function model=CreateModel()
-
+function model=CreateModel(parameters)
+    
+    id = 0;
+    
+    if size paramters
+    
+    
+    for ids=1:parameters
+    
+    
+    
+    
+    
+    % -------------------------
     x=[82 91 12 92 63 9 28 55 96 97 15 98 96 49 80 12 80 55];
     
     y=[14 42 92 80 96 66 3 85 94 68 76 75 39 66 17 78 80 45];
@@ -42,5 +54,11 @@ function model=CreateModel()
     model.xmax=xmax;
     model.ymin=ymin;
     model.ymax=ymax;
-    
+    % -------------------------
+end
+
+
+
+function t = CreateTask(id,tparameters)
+    t.id = id
 end

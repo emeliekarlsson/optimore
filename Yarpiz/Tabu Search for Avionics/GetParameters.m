@@ -1,7 +1,8 @@
-function [parameters] = GetParameters(path)
-%GETPARAMETERS Summary of this function goes here
-%   Detailed explanation goes here
-
-    parameters = [100,1,a];
+function parameters = GetParameters(dirpath)
+    %GETPARAMETERS Summary of this function goes here
+    %   Detailed explanation goes here
+    
+    dir *.m
+    
 
 end
