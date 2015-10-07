@@ -1,0 +1,10 @@
+t = ('id',tid,'s',tstart,'e',tend,'tlid',tlid,'len',length,'dep',dependencies)
+tl = ('tlid',tlid,'length',length,'te',0,'tasks',[])
+
+
+TODO:
+* CreatePermActionList needs porting
+* -----------
+* weight parameters in preferences: DONE
+
+

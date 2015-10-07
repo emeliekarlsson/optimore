@@ -17,34 +17,58 @@ close all;
 
 %% Problem Definition
 
-parameters = GetParameters();
+% 1.
+% Create Scheduling Model
+par = GetParameters();
+model = CreateModel(par);      
+% Create Empty Individual Structure
+bestsol.Model=[];
+bestsol.Cost=[];
+bestsol.Par=[];
+% Create Initial Solution
+sol=bestsol;
+sol.Par=par;
 
-model = CreateModel(parameters);      % Create TS Model
-
-CostFunction=@(tour) TourLength(tour, model);    % Cost Function
-
-ActionList=CreatePermActionList(model.n);    % Action List
-
+% 2.
+% 
+CostFunction=@(sol) CostFunction(sol);    % Cost Function
+ActionList=CreatePermActionList(model.ntk);    % Action List
 nAction=numel(ActionList);              % Number of Actions
 
+% 3. Tabu Search Parameters
+%
+MaxIt=50; % Maximum Number of Iterations
 
-%% Tabu Search Parameters
+TL=round(0.5*nAction); % Tabu Length
 
-MaxIt=50;                      % Maximum Number of Iterations
-
-TL=round(0.5*nAction);      % Tabu Length
-
-
-%% Initialization
+% Initialization
 
 % Create Empty Individual Structure
-empty_individual.Position=[];
-empty_individual.Cost=[];
+bestsol.Model=[];
+bestsol.Cost=[];
+bestsol.Par=[];
 
 % Create Initial Solution
-sol=empty_individual;
-sol.Position=randperm(model.n);
-sol.Cost=CostFunction(sol.Position);
+sol=bestsol;
+sol.Par=par;
+
+ms=model.all_t;
+
+for itl=1:model.ntl
+    ntktl = length(model.all_tl{itl}.tasks);
+    start = round((randperm(ntktl)+1)/ntktl*par.tl_len-par.meanlen);
+    for itk=1:ntktl
+        ms{itk}.s=start(itk);
+        ms{itk}.e=ms{itk}.s+ms{itk}.len;
+    end
+end
+
+% Update model:
+model.all_t=ms;
+sol.Model=model;
+
+%%
+sol.Cost=CostFunction(sol);
 
 % Initialize Best Solution Ever Found
 BestSol=sol;
