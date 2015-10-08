@@ -1,16 +1,4 @@
-%
-% Copyright (c) 2015, Yarpiz (www.yarpiz.com)
-% All rights reserved. Please read the "license.txt" for license terms.
-%
-% Project Code: YPEA116
-% Project Title: Implementation of Tabu Search for TSP
-% Publisher: Yarpiz (www.yarpiz.com)
-% 
-% Developer: S. Mostapha Kalami Heris (Member of Yarpiz Team)
-% 
-% Contact Info: sm.kalami@gmail.com, info@yarpiz.com
-%
-
+% Preform the action, only doswap implemented so far.
 function q=DoAction(p,a)
 
     switch a(1)

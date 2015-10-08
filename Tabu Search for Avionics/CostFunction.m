@@ -1,18 +1,6 @@
-%
-% Copyright (c) 2015, Yarpiz (www.yarpiz.com)
-% All rights reserved. Please read the "license.txt" for license terms.
-%
-% Project Code: YPEA116
-% Project Title: Implementation of Tabu Search for TSP
-% Publisher: Yarpiz (www.yarpiz.com)
-% 
-% Developer: S. Mostapha Kalami Heris (Member of Yarpiz Team)
-% 
-% Contact Info: sm.kalami@gmail.com, info@yarpiz.com
-%
-
+% Evaluate the target/cost function for solution
 function C=CostFunction(sol)
-
+%%
     model = sol.Model;
     par = sol.Par;
     
@@ -26,25 +14,20 @@ function C=CostFunction(sol)
   
     % Iterate tasks:
     for it=1:ntk
+        %fprintf('%d\n',it)
         t_ocost=0;
-        
         for iit=1:ntk
+            %tks
+            %fprintf('%i ',it)
+            %fprintf('%i\n',iit)
             if tks{it}.e > tks{iit}.s & tks{it}.tlid==tks{iit}.tlid
-                if tks{it}.s <tks{iit}.e
+                if tks{it}.s <tks{iit}.e & it~=iit
                     t_ocost=t_ocost+w_ocost;
                 end
             end
-            if it~=iit
-                C=C+t_ocost;
-            end
         end
-        
-        
-        % **** COST OF OUT OF BOUNDS
-        % if tks{it}.e >
-        
-        
+        C=C+t_ocost;
+        % fprintf('%i\n',C);
     end
-
-    % model.all_cost=[];
+    %% model.all_cost=[];
 end

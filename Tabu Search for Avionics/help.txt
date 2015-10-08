@@ -3,8 +3,22 @@ tl = ('tlid',tlid,'length',length,'te',0,'tasks',[])
 
 
 TODO:
-* CreatePermActionList needs porting
+* PlotSolution
+
+
+
 * -----------
+* DOACTION: DONE
 * weight parameters in preferences: DONE
+* CreatePermActionList needs porting: DONE
 
 
+
+
+% Comment block:
+if mod(i,round(nAction/10))==0
+ fprintf('%i ',round(i/nAction*100));
+ if mod(i,nAction)==0
+     fprintf('\nCost: %i. ',newsol.Cost);
+ end
+end
